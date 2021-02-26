@@ -1,0 +1,42 @@
+model2.zip:
+    Contains Final ModifiedResnet18 model state.dict{}
+    torch.save()
+    # to use it "Mod1" class should be called. It is output layers of the Resnet18 pretrained model.
+    # file names could be confusing. I was experimenting for a homework. Small story is at the end of this .txt file.
+    
+model2itself.zip:
+    Contains whole model.
+    torch.save()
+    # to use it "Mod1" class should be called. It is output layers of the Resnet18 pretrained model.
+    
+
+ModelHistory: Files created with function calls in colab notebook. "def historySave():" and "def historyLoad():"
+    Contains .json files of trained models.
+        
+        json files (11epoch.json) has: 
+                - training loss
+                - training accuracy
+                - validataion loss 
+                - validation accuracy
+             
+        trainining loss/acc of each epoch
+        validation loss/acc of every 3 epoch
+        
+        Validation condition was (if epoch%3). 
+        Therefore there is also a validation results for epoch 0.
+        
+        
+    Contains .json files of test and test2.
+    
+        json files (11epoch_test.json and 11epoch_test2) has:
+                - Ground truth values of images
+                - Predictions
+                - Actual Predictions(True predictions)  # there could be better name, I know <o.o>
+                - Wrong Predictions
+                
+
+Number of the epochs which is "11" could be confusing. And I believe it is. 
+This was the project that I was trying to learn practice. I built on top of that. 
+At the beginning there was a naming convention ambiguity.
+
+
