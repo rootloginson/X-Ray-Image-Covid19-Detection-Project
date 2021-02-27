@@ -54,7 +54,7 @@ There is also Python Script to create CSV file with one line of shell command.
 
 <p>&nbsp;</p>
 
-**The model architecture of succesfull(relatively) model:**
+**Model architecture of the succesfull(relatively) model:**
 
 > **Restnet18 (**Pretrained=<span style="color:blue">True</span>**)** 
 >>FC (512, 128) >> resnet output << 
