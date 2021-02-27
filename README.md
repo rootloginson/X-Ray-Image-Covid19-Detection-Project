@@ -3,12 +3,12 @@
 Aim of this study is designing a deep learning model to detect Covid 19 disease using x-ray lung images from 
 [“Kaggle, CoronaHack -Chest X-Ray-Dataset”](https://www.kaggle.com/praveengovi/coronahack-chest-xraydataset/metadata) dataset. 
 This dataset has unlabeled CT images and labeled x-ray images. 
-There are 7 different categories in total, 1 normal and 6 disease with lung inflammation symptoms. 
+There are 7 different categories in total, 1 normal and 6 diseases with lung inflammation symptoms. 
 Kaggle dataset was highly unbalanced. 
 Therefore,  more study has been made on the efficient use of dataset that is detected to have faulty labels compared to the network architecture.
 
 *Personal quote:*  
-*Main purpose of being insisted on this dataset is being able to build a good model due to lack of good labeled datas. 
+*Main purpose of being insistent on this dataset is being able to build a good model due to lack of good labeled datas. 
 I believe it is very hard to achieve. Many failed attemps help me to understand AI concepts better. 
 And gives birth to new ideas* **(っ◔◡◔)っ :sparkles: \\(^.^)/** 
 
