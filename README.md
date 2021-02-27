@@ -17,6 +17,8 @@ You can test a lung x-ray image with one line of shell command.
 
 ---
 
+<p>&nbsp;</p>
+
 ### Kaggle, CoronaHack X-Ray-Dataset Distribution
 
 |Category|Number of Images|
