@@ -31,7 +31,7 @@ ModelHistory: Files created with function calls in colab notebook. "def historyS
         json files (11epoch_test.json and 11epoch_test2) has:
                 - Ground truth values of images
                 - Predictions
-                - Actual Predictions(True predictions)  # there could be better name, I know <o.o>
+                - Actual Predictions(True predictions)  # there could be a better name <o.o>
                 - Wrong Predictions
                 
 
