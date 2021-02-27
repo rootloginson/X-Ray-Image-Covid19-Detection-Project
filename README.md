@@ -29,6 +29,8 @@ You can test a lung x-ray image with one line of shell command.
 |Streptococcus Bacteria|4|
 |Stress Smoking|2|
 
+<p>&nbsp;</p>
+
 ### Neural Network Model
 
 Study has been made for practising. Therefore, there are many scripted process in order to create
