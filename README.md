@@ -40,6 +40,7 @@ Study has been made for practising. Therefore, there are many scripted process i
 - Model type, training,validation,test accuracy&loss [**graphs**](https://github.com/rootloginson/X-Ray-Image-Covid19-Detection-Project/tree/master/Final/KaggleCovid/Plots). 
 - Model type, training,validation,test accuracy&loss history datas stored in [**.json files**](https://github.com/rootloginson/X-Ray-Image-Covid19-Detection-Project/tree/master/Final/KaggleCovid/tempSave/ModelHistory).
 - **Comparisons** tables for different models.
+- Final model [state.dict()](https://github.com/rootloginson/X-Ray-Image-Covid19-Detection-Project/blob/master/Final/KaggleCovid/tempSave/model2.zip), [Entire Model](https://github.com/rootloginson/X-Ray-Image-Covid19-Detection-Project/blob/master/Final/KaggleCovid/tempSave/model2itself.zip)
 
 This saved files can be found in this repository along with their **"aboutFiles.txt"** files.
 
@@ -54,16 +55,49 @@ There is also Python Script to create CSV file with one line of shell command.
 
 <p>&nbsp;</p>
 
-**Model architecture of the succesfull(relatively) model:**
+**Modified Resnet18 Model Architecture:** Model architecture of the succesfull(relatively) model
 
-> **Restnet18 (**Pretrained=<span style="color:blue">True</span>**)** 
+
+> **Resnet18 (**Pretrained=<span style="color:blue">True</span>**)** 
 >>FC (512, 128) >> resnet output << 
 >>>Dropout (0.5) 
 >>>> FC (128,3)
 >>>>> CrossEntropyLoss (log_softmax+nllloss)
 
+<p>&nbsp;</p>
+
+
 <img src="https://raw.githubusercontent.com/rootloginson/X-Ray-Image-Covid19-Detection-Project/master/markdown_files/model_architecture_whitebackground.png" width="800" style="background-color: transparent;">
 
+**Summary of the models**
+
+After selecting the model structure, different training methods has been used in different combination in order to see the effect of the methods. 
+Resnet 50 and Resnet 18 architectetures has been used for pretrained model. These models has been tested along with modified resnet18 model which has been mention above. Every model runs with same settings. Only the output class number has been vary either 3 or 7.
+**Result Model** , *unlike others*, have been babysitted to test my understanding about the relation between gradient updates, learning rate, sample distribution. I  led the "Modified Resnet18" model (Result Model) to have a relatively better generalized model compare to others. The algorithm I follow will be explained.
+
+All models except "Result Model" have been trained with the same parameters. These are: 
+
+- All of the training data feeded into model with the *batch_size = 128*
+- Training / Validation split it 0.85/0.15
+- Training / Validation split is stratified according to training set
+- Optimizer method: Stochastic Gradient Descent with Momentum    
+    - :dancers:[ I believe this is a good intuitive representation of How Mini Batch Stochastic Gradient Descent with Momentum behaves ](https://www.youtube.com/watch?v=ab_tYof60I4) :dancer:  
+- Criterion: torch.nn.CrossEntropyLoss (nn.LogSoftmax + nn.NLLLoss)
+
+
+```python
+optimizer = optim.SGD(params=model.parameters(), 
+				      lr=0.001, 
+				      momentum=0.95, 
+				      weight_decay=0.0002
+                      )
+ 
+criterion = nn.CrossEntropyLoss()
+```
+
+[![](https://raw.githubusercontent.com/rootloginson/X-Ray-Image-Covid19-Detection-Project/master/markdown_files/model_result_table.png)](https://raw.githubusercontent.com/rootloginson/X-Ray-Image-Covid19-Detection-Project/master/markdown_files/model_result_table.png)
+
+---
 **1 Introduction**
 
 Covid 19 is classified as a viral infection. In symptomatic and severe cases, it results with an inflammation in the lungs . Inflamation is a immune response of a mamal body in order to protect the damaged body area. This inflamation can be observed as fluid increasement. Covid 19-induced increased fluid can be detected on chest x-ray images as an white foggy area on lungs. Human eye can distinguish lung and other body part on xray image in normal cases. During inflamation dark colored lung area can be partly seen. As the fluid increase, white foggy area on x-ray image increases. This white cloud is a common symptom which is observed in other lung diseases as well. Therefore, assumption has been made that using inflammation only as a distinguishing feature for covid and classifying all diseases separately would not significantly increase the success rate of. For this reason, the classification was divided into 3 different groups as Normal, Viral or Bacterial Inflammation and Covid19 Inflamation. This assumption has not been thoroughly tested due to lack of computation power. For computation Google Colab and free provided Google Colab Nvidia T4/16Gb GPU has been used. 
@@ -141,7 +175,7 @@ Standart deviation of kaggle dataset is smaller than the Imagenet standart devia
 
 **3.2 Eliminating the networks with bottleneck layers**
 
-According to Inception(v3) article [[ref](https://arxiv.org/abs/1512.00567)], in General Design Principles section, “Avoid representational bottlenecks, especially early in the network[[ref](https://arxiv.org/pdf/1512.00567.pdf)]”. and “One should avoid bottlenecks with extreme compression[[ref](https://arxiv.org/pdf/1512.00567.pdf)]” These warnings can be interpreted for the covid19 classification tasks as; CNN’s may learn necessary features for the classification task. But bottleneck layers will add up all the learned features and information will be lost. With small dataset unlike imagenet, network may not learn new meaningfull features from bottleneck layers. Same intuition carried for the pooling layers which will be explained in the next section. In addition vanishing and exploiding gradient may become a problem. For these reasons, residual network becomes a strong tactical option against inception network.
+According to Inception(v3) article [[ref](https://arxiv.org/abs/1512.00567)], in General Design Principles section, “Avoid representational bottlenecks, especially early in the network[[ref](https://arxiv.org/pdf/1512.00567.pdf)]” and “One should avoid bottlenecks with extreme compression[[ref](https://arxiv.org/pdf/1512.00567.pdf)]” These warnings can be interpreted for the covid19 classification tasks as; CNN’s may learn necessary features for the classification task. But bottleneck layers will add up all the learned features and information will be lost. With small dataset unlike imagenet, network may not learn new meaningfull features from bottleneck layers. Same intuition carried for the pooling layers which will be explained in the next section. In addition vanishing and exploiding gradient may become a problem. For these reasons, residual network becomes a strong tactical option against inception network.
 
 
 **3.3 Residual Networks**
