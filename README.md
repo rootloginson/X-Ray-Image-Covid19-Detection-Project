@@ -73,12 +73,12 @@ There is also Python Script to create CSV file with one line of shell command.
 
 After selecting the model structure, different training methods has been used in different combination in order to see the effect of the methods. 
 Resnet 50 and Resnet 18 architectetures has been used for pretrained model. These models has been tested along with modified resnet18 model which has been mention above. Every model runs with same settings. Only the output class number has been vary either 3 or 7.
-**Result Model** , *unlike others*, have been babysitted to test my understanding about the relation between gradient updates, learning rate, sample distribution. I  led the "Modified Resnet18" model (Result Model) to have a relatively better generalized model compare to others. The algorithm I follow will be explained.
+**Result Model** , *unlike others*, has been babysitted to test my understanding about the relation between gradient updates, learning rate, sample distribution. I  led the "Modified Resnet18" model (Result Model) to have a relatively better generalized model compare to others. The algorithm I follow will be explained.
 
 All models except "Result Model" have been trained with the same parameters. These are: 
 
 - All of the training data feeded into model with the *batch_size = 128*
-- Training / Validation split it 0.85/0.15
+- Training / Validation split is 0.85/0.15
 - Training / Validation split is stratified according to training set
 - Optimizer method: Stochastic Gradient Descent with Momentum    
     - :dancers: [If you like traditional dances and SpongeBob soundtracks, I believe this is a good intuitive representation of How Mini Batch Stochastic Gradient Descent with Momentum behaves ](https://www.youtube.com/watch?v=ab_tYof60I4) :dancer:  
