@@ -166,12 +166,6 @@ Probably, weights will jump into a different local minimum.
 
 <p>&nbsp;</p>
 
-Hypothetical Questions? 
-What else can be done?
-How to improve?  
-Will be edited soon.
-<p>&nbsp;</p>
-
 ---
 **1 Introduction**
 
