@@ -80,6 +80,7 @@ All models except "Result Model" have been trained with the same parameters. The
 - All of the training data feeded into model with the *batch_size = 128*
 - Training / Validation split is 0.85/0.15
 - Training / Validation split is stratified according to training set
+- Batches were shuffled each epoch.
 - Optimizer method: Stochastic Gradient Descent with Momentum    
     - :dancers: [If you like traditional dances and SpongeBob soundtracks, I believe this is a good intuitive representation of How Mini Batch Stochastic Gradient Descent with Momentum behaves ](https://www.youtube.com/watch?v=ab_tYof60I4) :dancer:  
 - Criterion: torch.nn.CrossEntropyLoss (nn.LogSoftmax + nn.NLLLoss)
@@ -95,7 +96,79 @@ optimizer = optim.SGD(params=model.parameters(),
 criterion = nn.CrossEntropyLoss()
 ```
 
+<p>&nbsp;</p>
+
+As seen in table image below,
+
+Different pretrained Resnet50 and Resnet18 and Modified Resnet18 has been trained **11 epochs** with 7 classes and 3 class outputs.
+
+- 7 classes: Normal, Bacteria, Virus, Covid19, SarsVirus, Strept. Bact., Stress Smoking
+
+- 3 classes: Normal, *Remaining İnflammations such as Bact, Virus, Stress Smoking ...* , Covid19 
+
+Purple colered cells belongs to [“Kaggle, CoronaHack -Chest X-Ray-Dataset”](https://www.kaggle.com/praveengovi/coronahack-chest-xraydataset/metadata) 's Train and test set. (Note: 3 random Covid images moved into test set from trian set. Which is called **Test**. Light Blue colored cells belongs to [COVID-19 & Normal Posteroanterior(PA) X-rays](https://www.kaggle.com/tarandeep97/covid19-normal-posteroanteriorpa-xrays). Whole dataset used as **Test2**. This dataset contains 140 Normal and 140 Covid Chest X-xray images. Considering the Coronahack dataset has faulty labeled images, test2 dataset was used for comparison. **Test2** dataset was used for comparison purposes after all models including Result Model were trained and the project was terminated. Test2 was not involved in the decision-making process. [Evaluations on different datasets, Test2 and Test3]().
+
+***Accuracy and Loss Metric:***  
+*Kaggle Coronahack dataset is very small relative to the ImageNet dataset that Resnet had been trained with.  Since its small, to be able to track and understand the dataset easily, arithmetic mean has been used for the training, validation and test set.*
+**Confusion matrix of the test results have been created in order to track F1 score.**
+
+Loss: Each epoch,  Arithmetic mean of the Batch Losses
+
+Accuracy: Each epoch, (number of Correct Prediction) / (number of Total Prediction).
+
+ 
 [![](https://raw.githubusercontent.com/rootloginson/X-Ray-Image-Covid19-Detection-Project/master/markdown_files/model_result_table.png)](https://raw.githubusercontent.com/rootloginson/X-Ray-Image-Covid19-Detection-Project/master/markdown_files/model_result_table.png)
+
+**Interpretation of the results**
+
+1. None of these model except the babysitted "result model" have been able to detect 3 covid images in the test set. But Resnet50, **deeper model**, detected some of the covid images in the Test2 dataset unlike others. In the table image this is denoted by (1) and (2) in orange color. And the models that couldn't detect c ovid images are denoted by the red asterix. Deeper pretraiend Resnet model.
+
+2. Before training all these models, changing class weight of Resnet50 resulted in a same situation where model was able to detect some covid images correctly. This leads me to a point I can simulate similar results by changing sample size an distribution.
+
+3. As an inference of the table, Modified Resnet50 model, when it trained, could be as successful as Result Model. This situation has not yet been tested due to the Google Colab limitation. Moving files around is difficult with limited internet. *ToDo:* I will test it when it is possible.
+
+4. During the training of Result Model, learning rate and sample distribution has been actively changed  depending on the loss, accuracy of training and test dataset, overfit, plateau relationship. The momentum value has also been changed depending on the batch size and sample distribution  either 0.90(last 10), 0.95(last 20). Model detected 3 out of 3 covid images in Test set. This is denoted by the blue asterix.
+
+As a result of this micromanaged experimental work of mine, I believe I have seen the light of why the SOTA applications mentioned in the Stanford Courses and Archive articles have evolved into current network structures. 
+
+Also I wanted to formulize what i did for Result Model (item 4). What I did by hand for changing sample size due to metrics, could have been achieved with Class Weights. This is tested. And this could give a better solution with "Modified Resnet 50" model. And desicion process to change the learning rate between 0.1 and 0.001 in order to find completely different local minimum can be implemented into training as below algorithm.
+
+<p>&nbsp;</p>
+
+**Training algorithm of Result Model**
+
+*Start*
+
+>**Train model**  
+(if model improves save the model)
+
+*If improves keep training.*
+
+>If F1 score and accuracy dont increase after few epochs, decrease the learning rate.  
+Train the model  
+(if model improves save the model)
+
+*If improves keep training.*
+
+>If the model is stuck with a poor F1 score and accuracy, change the sample distribution in favor of incorrectly predicted labels.  
+Train the model  
+(if model improves save model)
+
+*If improves keep training.*
+
+>If the model overfits and metrics drop then it is a bad local minimum.
+Go back to last saved model. Increase the learning rate between 10x ~ 100x.  
+Probably, weights will jump into a different local minimum.
+
+> **Back to top.**
+
+*End*
+
+
+Hypotetical Questions ? 
+But What can be done ?
+
+<p>&nbsp;</p>
 
 ---
 **1 Introduction**
@@ -104,7 +177,7 @@ Covid 19 is classified as a viral infection. In symptomatic and severe cases, it
 
 **2 Dataset**
 
-Kaggle Coronahack Chest X Ray dataset disease categories can be seen on Table 1.  Dataset after dividing into  3 different group can be seen on Table 2. TRAIN and Test seperation is belong to Kaggle dataset. However, there was no covid image in the test file. For this reason 3 randomly selected Covid images was moved from train to test folder. 
+Kaggle Coronahack Chest X Ray dataset disease categories can be seen on Table 1.  Dataset after dividing into  3 different group can be seen on Table 2. TRAIN and Test seperation is belong to Kaggle dataset. However, there was no covid image in the test file. For this reason 3 randomly selected Covid images was moved from training to test folder. 
 
 (*Very bad datas to start with :/*)
 
@@ -151,7 +224,7 @@ To be able to use images as a Resnet input; all images resized to 224 pixels wit
 
 **2.4 Data normalization parameters**
 
-Images in datasets have different types of attributes such as color and contrast. In order to prevent these differentiation between images, after converting all the images to Grayscale normalization has been applied to the transformed images. Mean (mu) and Standart Deviation (std) has been calculated by using train images of Kaggle, Chest X-ray dataset (eq.(3), eq.(4)). 
+Images in datasets have different types of attributes such as color and contrast. In order to prevent these differentiation between images, after converting all the images to Grayscale normalization has been applied to the transformed images. Mean (mu) and Standart Deviation (std) has been calculated by using training images of Kaggle, Chest X-ray dataset (eq.(3), eq.(4)). 
 
 |Mean and Standart Deviation|Eq|
 |:--------------------:|--:|
@@ -192,4 +265,4 @@ Activation of previous layer will be constantly added to forward layer so that u
 
 **3.3.3 The result of untrained resnet training**
 
-During training untrained Untrained Resnet models resulted with overfitting on first epoch. Model found a local minima and accuracy didn’t improve. Kaggle test set accuracy was very low compare to validation set accuracy . Resnet model is complex enough to initialize with local minima for the Kaggle, CoronaHack Chest X-ray set.
+Training of  the Untrained Resnet models resulted with overfitting on first epoch. Model found a local minima and accuracy didn’t improve. Kaggle test set accuracy was very low compare to validation set accuracy . Resnet model is complex enough to initialize with local minima for the Kaggle, CoronaHack Chest X-ray set.
