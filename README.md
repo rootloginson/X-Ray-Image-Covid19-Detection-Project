@@ -106,7 +106,7 @@ Different pretrained Resnet50 and Resnet18 and Modified Resnet18 has been traine
 
 - 3 classes: Normal, *Remaining İnflammations such as Bact, Virus, Stress Smoking ...* , Covid19 
 
-Purple colered cells belongs to [“Kaggle, CoronaHack -Chest X-Ray-Dataset”](https://www.kaggle.com/praveengovi/coronahack-chest-xraydataset/metadata) 's Train and test set. (Note: 3 random Covid images moved into test set from trian set. Which is called **Test**. Light Blue colored cells belongs to [COVID-19 & Normal Posteroanterior(PA) X-rays](https://www.kaggle.com/tarandeep97/covid19-normal-posteroanteriorpa-xrays). Whole dataset used as **Test2**. This dataset contains 140 Normal and 140 Covid Chest X-xray images. Considering the Coronahack dataset has faulty labeled images, test2 dataset was used for comparison. **Test2** dataset was used for comparison purposes after all models including Result Model were trained and the project was terminated. Test2 was not involved in the decision-making process. [Evaluations on different datasets, Test2 and Test3]().
+Purple colered cells belongs to [“Kaggle, CoronaHack -Chest X-Ray-Dataset”](https://www.kaggle.com/praveengovi/coronahack-chest-xraydataset/metadata) 's Train and test set. (Note: 3 random Covid images moved into test set from trian set. Which is called **Test**. Light Blue colored cells belongs to [COVID-19 & Normal Posteroanterior(PA) X-rays](https://www.kaggle.com/tarandeep97/covid19-normal-posteroanteriorpa-xrays). Whole dataset used as **Test2**. This dataset contains 140 Normal and 140 Covid Chest X-xray images. Considering the Coronahack dataset has faulty labeled images, test2 dataset was used for comparison. **Test2** dataset was used for comparison purposes after all models including Result Model were trained and the project was terminated. Test2 was not involved in the decision-making process.
 
 ***Accuracy and Loss Metric:***  
 *Kaggle Coronahack dataset is very small relative to the ImageNet dataset that Resnet had been trained with.  Since its small, to be able to track and understand the dataset easily, arithmetic mean has been used for the training, validation and test set.*
@@ -164,10 +164,11 @@ Probably, weights will jump into a different local minimum.
 
 *End*
 
+<p>&nbsp;</p>
 
-Hypotetical Questions ? 
-But What can be done ?
-
+Hypotetical Questions? 
+What can be done?
+How to improve?
 <p>&nbsp;</p>
 
 ---
