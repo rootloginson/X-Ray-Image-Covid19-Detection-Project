@@ -169,8 +169,7 @@ Probably, gradients will jump into a different local minimum.
 As a result, 
 
 I have observed that papers which has published by known publisher has quality datas. Medical imaging has done by more advanced machines compare to public datas. And most of the times these datas are not public. Also private hospitals, institution don't share their datas. Some institutions share their datas and these datas are used by researchers. It was assumed that the imaging machines variety (maybe operators?) was not sufficient to generate an acceptably unbiased data set. Also since machine can't be moved, images may carry local variances and similarities like genetics, life styles. 
-
-Converting RGB to Gray was completely a experimental idea. I didn't have computational power. I wanted to practice on my algorithm and data structure skills. My time & space complexity education on MITx Introduction to CS with Python has paid off with limited computer sources. Some of my code might seem unnecessary due to that practice.
+Converting RGB to Gray was completely a experimental idea. I didn't have computational power. I wanted to practice on my algorithm and data structure skills. Some of my codes might seem unnecessary due to this practice.
 
 Reducing 7 classes to 3 classes seems usefull but 11 epoch is not good idea to build some intiution on top of it. I didn't have computation power and I had to migrate datas when I exceed my usage limit. 
 
