@@ -173,7 +173,7 @@ Converting RGB to Gray was completely a experimental idea. I didn't have computa
 
 Reducing 7 classes to 3 classes seems usefull but 11 epoch is not good idea to build some intiution on top of it. I didn't have computation power and I had to migrate datas when I exceed my usage limit. 
 
-Inflammation alone is not a unique indicator for a covid19. It is an immune response. We need to include as many other tests as we can like blood minerals, hormons, hemograms in order to build a scalable, usefull prediction model for the future of the disease diagnosis since allostasis take care of the body regulation.
+Inflammation alone is not a unique indicator for Covid19. It is an immune response. We need to include as many other tests as we can like blood minerals, hormons, hemograms in order to build a scalable, usefull prediction model for the future of the disease diagnosis since allostasis take care of the body regulation.
 
 Or, using supervised learning to detect diseases with similar symptoms is not a good idea at all. Perhaps in the near future, we can train self-supervised learning models on detailed human body models such as we train drones in a computer game environment.
 
