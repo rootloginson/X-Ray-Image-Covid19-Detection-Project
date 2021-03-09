@@ -137,7 +137,6 @@ Also I wanted to formulize what i did for Result Model (item 4). What I did by h
 
 **Training algorithm of Result Model**
 
-
 *Start*
 
 >**Train model**  
@@ -182,13 +181,6 @@ Or, using supervised learning to detect diseases with similar symptoms is not a 
 
 ***Very Important Reference: [link](https://www.youtube.com/watch?v=l0V2Xzkp59U)***
 
-If I were in a company with unique data that no one else has, and this dataset was small, and I had no other choice, I would try my experimental model in a moment of boredom or while I waiting for the better SOTA training results. I have read some papers that uilize SVMs that are successful. I would get an idea by comparing SVM's experience on this dataset. I could use SVM for the output of the network. Gray image does not carry as much information as RGB image does. Since Andrew NG says gut feeling no funciona. I don't have much experiences on this subject. To build good understanding of where to use what requires a good research environment in order build the experience. But considering I have builded something from blank paper to full automized model even if not apply well to real world. It is ready and documented on github ready to download work. 
-
-My main concern is I didn't give enough option to my network to classify images. Network might say this normal or this is covid. But when network can't decide probably say this is virus or something. Because I have reduced from 7 to 3 classes. When it is not covid or normal it results as Virus, Bacteri etc. 
-
-I imagined a person who tries to classify normal and covid images. When the person can't decide, person should be able to say I don't know 
-
-**But What can be done ?**
 
 <p>&nbsp;</p>
 
@@ -288,4 +280,3 @@ Activation of previous layer will be constantly added to forward layer so that u
 **3.3.3 The result of untrained resnet training**
 
 Training of  the Untrained Resnet models resulted with overfitting on first epoch. Model found a local minima and accuracy didn’t improve. Kaggle test set accuracy was very low compare to validation set accuracy . Resnet model is complex enough to initialize with local minima for the Kaggle, CoronaHack Chest X-ray set.
-
