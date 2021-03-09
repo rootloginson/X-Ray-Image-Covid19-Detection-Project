@@ -106,7 +106,7 @@ Different pretrained Resnet50 and Resnet18 and Modified Resnet18 has been traine
 
 - 3 classes: Normal, *Remaining İnflammations such as Bact, Virus, Stress Smoking ...* , Covid19 
 
-Purple colered cells belongs to [“Kaggle, CoronaHack -Chest X-Ray-Dataset”](https://www.kaggle.com/praveengovi/coronahack-chest-xraydataset/metadata) 's Train and test set. (Note: 3 random Covid images moved into test set from trian set. Which is called **Test**. Light Blue colored cells belongs to [COVID-19 & Normal Posteroanterior(PA) X-rays](https://www.kaggle.com/tarandeep97/covid19-normal-posteroanteriorpa-xrays). Whole dataset used as **Test2**. This dataset contains 140 Normal and 140 Covid Chest X-xray images. Considering the Coronahack dataset has faulty labeled images, test2 dataset was used for comparison. **Test2** dataset was used for comparison purposes after all models including Result Model were trained and the project was terminated. Test2 was not involved in the decision-making process.
+Purple colered cells belongs to [“Kaggle, CoronaHack -Chest X-Ray-Dataset”](https://www.kaggle.com/praveengovi/coronahack-chest-xraydataset/metadata) 's Train and test set. (Note: 3 random Covid images moved into test set from trian set. Which is called **Test**. Light Blue colored cells belongs to [COVID-19 & Normal Posteroanterior(PA) X-rays](https://www.kaggle.com/tarandeep97/covid19-normal-posteroanteriorpa-xrays). Whole dataset used as **Test2**. This dataset contains 140 Normal and 140 Covid Chest X-xray images. Considering the Coronahack dataset has faulty labeled images, test2 dataset was used for comparison. **Test2** dataset was used for comparison purposes after all models including Result Model were trained and the project was terminated. Test2 was not involved in the decision-making process. [Evaluations on different datasets, Test2 and Test3]().
 
 ***Accuracy and Loss Metric:***  
 *Kaggle Coronahack dataset is very small relative to the ImageNet dataset that Resnet had been trained with.  Since its small, to be able to track and understand the dataset easily, arithmetic mean has been used for the training, validation and test set.*
@@ -123,7 +123,7 @@ Accuracy: Each epoch, (number of Correct Prediction) / (number of Total Predicti
 
 1. None of these model except the babysitted "result model" have been able to detect 3 covid images in the test set. But Resnet50, **deeper model**, detected some of the covid images in the Test2 dataset unlike others. In the table image this is denoted by (1) and (2) in orange color. And the models that couldn't detect c ovid images are denoted by the red asterix. Deeper pretraiend Resnet model.
 
-2. Before training all these models, changing class weight of Resnet50 resulted in a same situation where model was able to detect some covid images correctly. This leads me to a point I can simulate similar results by changing sample size an distribution.
+2. Before training all these models, changing class weight of Resnet50 resulted in a same situation where model was able to detect some covid images correctly. This led me to a point I can simulate similar results by changing sample size an distribution.
 
 3. As an inference of the table, Modified Resnet50 model, when it trained, could be as successful as Result Model. This situation has not yet been tested due to the Google Colab limitation. Moving files around is difficult with limited internet. *ToDo:* I will test it when it is possible.
 
@@ -158,11 +158,27 @@ Train the model
 
 >If the model overfits and metrics drop then it is a bad local minimum.
 Go back to last saved model. Increase the learning rate between 10x ~ 100x.  
-Probably, weights will jump into a different local minimum.
+Probably, gradients will jump into a different local minimum.
 
 > **Back to top.**
 
 *End*
+
+<p>&nbsp;</p>
+
+As a result, 
+
+I have observed that papers which has published by known publisher has quality datas. Medical imaging has done by more advanced machines compare to public datas. And most of the times these datas are not public. Also private hospitals, institution don't share their datas. Some institutions share their datas and these datas are used by researchers. It was assumed that the imaging machines variety (maybe operators?) was not sufficient to generate an acceptably unbiased data set. Also since machine can't be moved, images may carry local variances and similarities like genetics, life styles. 
+
+Converting RGB to Gray was completely a experimental idea. I didn't have computational power. I wanted to practice on my algorithm and data structure skills. My time & space complexity education on MITx Introduction to CS with Python has paid off with limited computer sources. Some of my code might seem unnecessary due to that practice.
+
+Reducing 7 classes to 3 classes seems usefull but 11 epoch is not good idea to build some intiution on top of it. I didn't have computation power and I had to migrate datas when I exceed my usage limit. 
+
+Inflammation alone is not a unique indicator for a covid19. It is an immune response. We need to include as many other tests as we can like blood minerals, hormons, hemograms in order to build a scalable, usefull prediction model for the future of the disease diagnosis since allostasis take care of the body regulation.
+
+Or, using supervised learning to detect diseases with similar symptoms is not a good idea at all. Perhaps in the near future, we can train self-supervised learning models on detailed human body models such as we train drones in a computer game environment.
+
+***Very Important Reference: [link](https://www.youtube.com/watch?v=l0V2Xzkp59U)***
 
 <p>&nbsp;</p>
 
