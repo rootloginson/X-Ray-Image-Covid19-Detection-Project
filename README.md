@@ -164,20 +164,32 @@ Probably, gradients will jump into a different local minimum.
 
 *End*
 
+
 <p>&nbsp;</p>
 
 As a result, 
 
-I have observed that papers which has published by known publisher has quality datas. Medical imaging has done by more advanced machines compare to public datas. And most of the times these datas are not public. Also private hospitals, institution don't share their datas. Some institutions share their datas and these datas are used by researchers. It was assumed that the imaging machines variety (maybe operators?) was not sufficient to generate an acceptably unbiased data set. Also since machine can't be moved, images may carry local variances and similarities like genetics, life styles. 
-Converting RGB to Gray was completely a experimental idea. I didn't have computational power. I wanted to practice on my algorithm and data structure skills. Some of my codes might seem unnecessary due to this practice.
+I have observed that papers which has published by known publisher has quality datas. Medical imaging has done by more advanced machines compare to public datas. And most of the times these datas are not public. Also private hospitals, institution don't share their datas. Few institutions share their datas and these datas are used by researchers. I assume that the imaging machines variety (maybe operators?) was not sufficient to generate an acceptably unbiased data set. Also since machine can't be moved, images may carry local variances and similarities like genetics, life styles. 
+
+Converting from RGB to Gray was completely a experimental idea. I didn't have computational power. Also, I wanted to practice on my algorithm and data structure skills. Therefore some of my codes might seem unnecessary due to that practice reason.
 
 Reducing 7 classes to 3 classes seems usefull but 11 epoch is not good idea to build some intiution on top of it. I didn't have computation power and I had to migrate datas when I exceed my usage limit. 
 
-Inflammation alone is not a unique indicator for Covid19. It is an immune response. We need to include as many other tests as we can like blood minerals, hormons, hemograms in order to build a scalable, usefull prediction model for the future of the disease diagnosis since allostasis take care of the body regulation.
+I assume, inflammation is an immune response and it alone is not a unique indicator for covid19 detection. We need to include as many other tests as we can like blood minerals, hormons, hemograms in order to build a scalable, usefull prediction model for the future of the disease diagnosis since allostasis take care of the body regulation. For covid detection task, dog nose seems like a better option. Perhaps the combination of [biohybrid nose](https://singularityhub.com/2021/01/26/scientists-made-a-biohybrid-nose-using-cells-from-mosquitoes/) and [AI computer chips](https://interestingengineering.com/ai-computer-chip-smells-danger-could-replace-sniffer-dogs) will be in use in the near future.
 
-Or, using supervised learning to detect diseases with similar symptoms is not a good idea at all. Perhaps in the near future, we can train self-supervised learning models on detailed human body models such as we train drones in a computer game environment.
+Or, using supervised learning to detect diseases with similar symptoms is not a good idea at all. Perhaps in the near future, we can train self-supervised learning models on detailed human body models such as we train drones in a computer game environment. And combine this models with AI computer chips that will be implanted into human body to monitor. 
 
 ***Very Important Reference: [link](https://www.youtube.com/watch?v=l0V2Xzkp59U)***
+
+If I were in a company with unique data that no one else has, and this dataset was small, and I had no other choice, I would try my experimental model in a moment of boredom or while I waiting for the better SOTA training results. I have read some papers that uilize SVMs that are successful. I would get an idea by comparing SVM's experience on this dataset. I could use SVM for the output of the network. Please let me know if you think differently.
+
+
+Improvements? 
+
+One of my concerns and my solution suggestion: 
+I didn't give enough option to my network to classify images. Network might say this is normal or this is covid. When it is not covid or normal it results as Virus & Bacteri etc. The deeper the network will likely give better results. But with more classes observing will be impractical for HITL method. I am very curious about adding a class which is not a x-ray image but a gray image with random lines and circles. Maybe, this could generalize the model ? 
+
+
 
 <p>&nbsp;</p>
 
@@ -277,3 +289,4 @@ Activation of previous layer will be constantly added to forward layer so that u
 **3.3.3 The result of untrained resnet training**
 
 Training of  the Untrained Resnet models resulted with overfitting on first epoch. Model found a local minima and accuracy didn’t improve. Kaggle test set accuracy was very low compare to validation set accuracy . Resnet model is complex enough to initialize with local minima for the Kaggle, CoronaHack Chest X-ray set.
+
