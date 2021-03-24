@@ -1,0 +1,6 @@
+Chest_xray_Corona_dataset_Summary.csv
+Chest_xray_Corona_Metadata.csv 
+Above files are the files from the original CoronaHack -Chest X-Ray-Dataset. 
+
+Custom dataset for model pipeline is in Updated_Data_Frames folder.
+
