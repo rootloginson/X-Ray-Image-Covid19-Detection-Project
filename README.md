@@ -7,11 +7,6 @@ There are 7 different categories in total, 1 normal and 6 diseases with lung inf
 Kaggle dataset was highly unbalanced. 
 Therefore,  more study has been made on the efficient use of dataset that is detected to have faulty labels compared to the network architecture.
 
-*Personal quote:*  
-*The main purpose of being insistent on this dataset is being able to build a good model due to lack of good labeled datas. 
-I believe it is very hard to achieve. Many failed attempts help me to understand AI concepts better. 
-And gives birth to new ideas* **(っ◔◡◔)っ :sparkles: \\(^.^)/** 
-
 There is a python script in [**this**](https://github.com/rootloginson/Covid-Xray-Eval-Module) repository. 
 You can test a lung x-ray image with one line of shell command.
 
