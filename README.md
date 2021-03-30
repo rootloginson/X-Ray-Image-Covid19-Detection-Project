@@ -83,7 +83,6 @@ All models except "Result Model" have been trained with the same parameters. The
 - Training / Validation split is stratified according to training set
 - Batches were shuffled each epoch.
 - Optimizer method: Stochastic Gradient Descent with Momentum    
-    - :dancers: [If you like traditional dances and SpongeBob soundtracks, I believe this is a good intuitive representation of How Mini Batch Stochastic Gradient Descent with Momentum behaves ](https://www.youtube.com/watch?v=ab_tYof60I4) :dancer:  
 - Criterion: torch.nn.CrossEntropyLoss (nn.LogSoftmax + nn.NLLLoss)
 
 
